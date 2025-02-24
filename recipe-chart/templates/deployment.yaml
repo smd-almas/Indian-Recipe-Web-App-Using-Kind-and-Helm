@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipe-app
+spec:
+  replicas: {{ .Values.replicaCount }}  # Uses value from values.yaml
+  selector:
+    matchLabels:
+      app: recipe-app
+  template:
+    metadata:
+      labels:
+        app: recipe-app
+    spec:
+      containers:
+      - name: recipe-app
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+

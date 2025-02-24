@@ -1,0 +1,19 @@
+serviceAccount:
+  create: false  # Set to false if not using a custom ServiceAccount
+image:
+  repository: recipe-website
+  tag: latest
+  pullPolicy: Never  # Since we're using a local Kind image
+
+service:
+  name: recipe-service
+  type: NodePort
+  port: 80
+  nodePort: 30080  # Expose service on this port
+
+replicaCount: 1  # Number of running pods
+ingress:
+  enabled: false  # Change to 'true' if you plan to use Ingress
+autoscaling:
+  enabled: false  # Change to 'true' if you want Horizontal Pod Autoscaling
+
